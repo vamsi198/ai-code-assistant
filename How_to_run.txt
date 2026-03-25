@@ -1,0 +1,21 @@
+
+🎯 QUICK START 
+
+cd ai_code_assistant
+
+# Terminal 1 - Backend
+cd backend
+python -m venv venv
+venv\Scripts\activate 
+pip install -r requirements.txt
+# Create .env file with MongoDB and OpenRouter credentials
+python app.py
+
+# Terminal 2 - Frontend
+cd ai_code_assistant
+cd frontend
+npm install
+npm run dev
+
+# Browser
+Open http://localhost:5173

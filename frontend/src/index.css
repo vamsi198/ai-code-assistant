@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * This file is required to contain the @tailwind directives. 
+ * Any custom styles should be added within @layer directives or as components.
+ */
+@layer base {
+  body {
+    /* FIX: Removed dark:bg-gray-900 and dark:text-gray-100 to enforce light theme */
+    @apply bg-gray-100 text-gray-900 min-h-screen;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  /* Ensure main root element takes full width */
+  #root {
+    @apply w-full max-w-7xl mx-auto;
+  }
+}
+
+@layer components {
+    /* NOTE: Links may still show dark: styles if the browser forces dark mode,
+       but removing the 'dark:' classes from the body significantly improves the appearance. */
+    .prose a {
+        @apply text-indigo-600 hover:text-indigo-800 transition duration-150;
+    }
+
+    /* --- Styling for the Updated Code Section (NEW) --- */
+    .updated-code-section {
+        background: #1e293b; /* Slate-800 or similar dark background */
+        color: #f1f5f9; /* Slate-100 for light text */
+        border-radius: 12px;
+        padding: 0; /* Padding is handled by the SyntaxHighlighter custom style */
+        margin: 1rem 0;
+    }
+    
+    /* NEW: Container for the heading and the copy button */
+    .updated-code-section .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* Padding is applied here for the top/sides */
+        padding: 1.5rem 1.5rem 0 1.5rem; 
+    }
+
+
+    /* UPDATED: Simplified h2 styling */
+    .updated-code-section h2 {
+        margin: 0;
+        padding: 0; /* Padding handled by code-header */
+        color: #38bdf8; /* Sky-400 for a bright, modern accent */
+        font-size: 1.5rem;
+        display: flex; /* Ensures icons/text align well */
+        align-items: center;
+    }
+
+    /* Style for the error state */
+    .updated-code-section.error-state {
+      background: #dc2626; /* Red-600 */
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .updated-code-section .error-message {
+      font-weight: bold;
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+    }
+
+    /* Override default pre styling for code block to ensure the code takes precedence */
+    .updated-code-section pre {
+        margin: 0 !important; 
+    }
+}
+
+
+.repo-results {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.repo-header {
+    margin-bottom: 2rem;
+}
+
+.repo-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.repo-info {
+    color: #666;
+}
+
+.repo-url {
+    font-family: monospace;
+    background: #f5f5f5;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+}
+
+.aggregate-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.stat-card .score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.stat-card.quality .score {
+    color: #0e7490;
+}
+
+.grade {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: #0e7490;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.quality-distribution {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.distribution-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bar .label {
+    width: 120px;
+    font-size: 0.9rem;
+}
+
+.bar .bar-fill {
+    height: 24px;
+    background: #0e7490;
+    border-radius: 4px;
+    min-width: 2px;
+}
+
+.bar.excellent .bar-fill { background: #22c55e; }
+.bar.good .bar-fill { background: #0e7490; }
+.bar.fair .bar-fill { background: #f59e0b; }
+.bar.poor .bar-fill { background: #ef4444; }
+
+.files-list h2 {
+    margin-bottom: 1.5rem;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.file-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid #0e7490;
+}
+
+.file-card.grade-a { border-left-color: #22c55e; }
+.file-card.grade-b { border-left-color: #0e7490; }
+.file-card.grade-c { border-left-color: #f59e0b; }
+.file-card.grade-d { border-left-color: #f97316; }
+.file-card.grade-f { border-left-color: #ef4444; }
+
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.file-header h3 {
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge.grade-a { background: #22c55e; color: white; }
+.badge.grade-b { background: #0e7490; color: white; }
+.badge.grade-c { background: #f59e0b; color: white; }
+.badge.grade-d { background: #f97316; color: white; }
+.badge.grade-f { background: #ef4444; color: white; }
+
+.file-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-stats .stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.file-stats .label {
+    color: #666;
+}
+
+.file-error {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #fee;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #c00;
+}
+
+.repo-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.repo-results-loading,
+.repo-results-error,
+.repo-results-empty {
+    text-align: center;
+    padding: 3rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0e7490;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+}
